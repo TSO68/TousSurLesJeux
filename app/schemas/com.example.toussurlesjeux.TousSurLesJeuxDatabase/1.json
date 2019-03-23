@@ -1,0 +1,75 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "042945aa977fa33d8a5dcba662824d91",
+    "entities": [
+      {
+        "tableName": "Jeu",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`Id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `Nom` TEXT NOT NULL, `AnneeSortie` TEXT NOT NULL, `Studio` TEXT NOT NULL, `Genre` TEXT NOT NULL, `Description` TEXT NOT NULL, `Note` TEXT NOT NULL, `Avis` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "Id",
+            "columnName": "Id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Nom",
+            "columnName": "Nom",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "AnneeSortie",
+            "columnName": "AnneeSortie",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Studio",
+            "columnName": "Studio",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Genre",
+            "columnName": "Genre",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Description",
+            "columnName": "Description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Note",
+            "columnName": "Note",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Avis",
+            "columnName": "Avis",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "Id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"042945aa977fa33d8a5dcba662824d91\")"
+    ]
+  }
+}

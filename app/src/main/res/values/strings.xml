@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Tous Sur Les Jeux</string>
+    <string name="vide"></string>
+    <string name="app_pres">Bienvenue sur Tous Sur les Jeux (oui mais ça on l\'a déjà dit...)</string>
+    <string name="lbl_vers_liste">Liste des jeux</string>
+    <string name="lbl_vers_ajout">Ajouter un jeu</string>
+    <string name="title_activity_liste_jeux">ListeJeuxActivity</string>
+    <string name="nom">Nom</string>
+    <string name="sortie">Année de sortie</string>
+    <string name="studio">Studio de développement</string>
+    <string name="genre">Genre</string>
+    <string name="description">Description</string>
+    <string name="note">Note</string>
+    <string name="avis">Avis</string>
+    <string name="ajouter_le_jeu">Ajouter le jeu</string>
+    <string name="annuler">Annuler</string>
+    <string name="ann_e_de_sortie">Année de sortie :</string>
+    <string name="studio_fiche">Studio</string>
+    <string name="genre_fiche">Genre :</string>
+    <string name="description_fiche">Description :</string>
+    <string name="note_fiche">Note :</string>
+    <string name="avis_fiche">Avis :</string>
+    <string name="btnModifier">Modifier</string>
+    <string name="btnSupprimer">Supprimer</string>
+    <string name="btnModifierJeu">Modifier le jeu</string>
+</resources>
