@@ -16,7 +16,13 @@ public class FicheJeuActivity extends AppCompatActivity {
 
     TousSurLesJeuxDatabase db;
 
-    private Jeu unJeu;
+    //private Jeu unJeu;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        new GetFicheTask().execute();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +34,9 @@ public class FicheJeuActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Fiche du jeu");
 
         db = TousSurLesJeuxDatabase.getDatabase(this);
-        new GetFicheTask().execute();
+        //new GetFicheTask().execute();
 
-        Button btnModifier = findViewById(R.id.btnModifier);
+        /*Button btnModifier = findViewById(R.id.btnModifier);
         btnModifier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,19 +54,21 @@ public class FicheJeuActivity extends AppCompatActivity {
                 Intent intentListe = new Intent(FicheJeuActivity.this, ListeJeuxActivity.class);
                 startActivity(intentListe);
             }
-        });
+        });*/
     }
 
     private class GetFicheTask extends AsyncTask<Void, Void, Void> {
+
+        Jeu jeu = new Jeu();
 
         @Override
         protected Void doInBackground(Void... voids) {
             Intent intent = getIntent();
             if (intent.getExtras() != null ){
                 long id = intent.getExtras().getLong("CONST_ID");
-                Jeu jeu = db.jeuDao().findById(id);
+                jeu = db.jeuDao().findById(id);
 
-                TextView txtNom = findViewById(R.id.txtPresNom);
+                /*TextView txtNom = findViewById(R.id.txtPresNom);
                 TextView txtAnnee = findViewById(R.id.txtPresAnnee);
                 TextView txtStudio = findViewById(R.id.txtPresStudio);
                 TextView txtGenre = findViewById(R.id.txtPresGenre);
@@ -74,9 +82,51 @@ public class FicheJeuActivity extends AppCompatActivity {
                 txtGenre.setText(jeu.Genre);
                 txtDescription.setText(jeu.Description);
                 txtNote.setText(jeu.Note);
-                txtAvis.setText(jeu.Avis);
+                txtAvis.setText(jeu.Avis);*/
             }
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            TextView txtNom = findViewById(R.id.txtPresNom);
+            TextView txtAnnee = findViewById(R.id.txtPresAnnee);
+            TextView txtStudio = findViewById(R.id.txtPresStudio);
+            TextView txtGenre = findViewById(R.id.txtPresGenre);
+            TextView txtDescription = findViewById(R.id.txtPresDescription);
+            TextView txtNote = findViewById(R.id.txtPresNote);
+            TextView txtAvis = findViewById(R.id.txtPresAvis);
+
+            txtNom.setText(jeu.Nom);
+            txtAnnee.setText(jeu.AnneeSortie);
+            txtStudio.setText(jeu.Studio);
+            txtGenre.setText(jeu.Genre);
+            txtDescription.setText(jeu.Description);
+            txtNote.setText(jeu.Note);
+            txtAvis.setText(jeu.Avis);
+
+            Button btnModifier = findViewById(R.id.btnModifier);
+            btnModifier.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intentModifier = new Intent(getBaseContext(), ModifierJeuActivity.class);
+                    intentModifier.putExtra("CONST_ID", jeu.Id);
+                    startActivity(intentModifier);
+                }
+            });
+
+            Button btnSupprimer = findViewById(R.id.btnSupprimer);
+            btnSupprimer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new DeleteTask().execute();
+
+                    Intent intentListe = new Intent(FicheJeuActivity.this, ListeJeuxActivity.class);
+                    startActivity(intentListe);
+                }
+            });
         }
     }
 
